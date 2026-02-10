@@ -1,214 +1,249 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>San Valentín 💖</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>San Valentín 💖</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-      font-family: 'Courier New', monospace;
-      background: #0f172a;
-      color: white;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0f172a;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
 
-    .screen {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      opacity: 0;
-      transform: scale(0.95);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
+        .screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            pointer-events: none;
+        }
 
-    .active {
-      opacity: 1;
-      transform: scale(1);
-      pointer-events: all;
-    }
+        .active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: all;
+        }
 
-    h1 {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 20px;
-      color: #ff4d88;
-      text-shadow: 0 0 10px #ff4d88;
-    }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff4d88;
+            text-shadow: 0 0 10px #ff4d88;
+        }
 
-    button {
-      padding: 12px 22px;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      margin: 10px;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.3s;
-    }
+        button {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s;
+        }
 
-    button:hover { transform: scale(1.1); }
+        button:hover {
+            transform: scale(1.1);
+        }
 
-    .yes { background: #ff4d88; color: white; }
-    .no { background: #aaa; }
+        .yes {
+            background: #ff4d88;
+            color: white;
+        }
 
-    .card {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      max-width: 320px;
-      box-shadow: 0 0 20px rgba(255,77,136,0.4);
-      transition: transform 0.5s ease;
-    }
+        .no {
+            background: #aaa;
+        }
 
-    .card img {
-      width: 100%;
-      border-radius: 16px;
-      margin-bottom: 15px;
-      transition: opacity 0.8s ease;
-    }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 320px;
+            box-shadow: 0 0 20px rgba(255, 77, 136, 0.4);
+            transition: transform 0.5s ease;
+        }
 
-    .timer {
-      margin-top: 10px;
-      font-size: 1rem;
-      opacity: 0.8;
-    }
+        .card img {
+            width: 100%;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            transition: opacity 0.8s ease;
+        }
 
-    .hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-    }
+        .timer {
+            margin-top: 10px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
 
-    .heart {
-      position: absolute;
-      color: #ff4d88;
-      font-size: 20px;
-      animation: fall linear forwards;
-    }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
 
-    @keyframes fall {
-      from { transform: translateY(-10vh); opacity: 1; }
-      to { transform: translateY(110vh); opacity: 0; }
-    }
+        .heart {
+            position: absolute;
+            color: #ff4d88;
+            font-size: 20px;
+            animation: fall linear forwards;
+        }
 
-    .gallery img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin: 5px;
-      transition: transform 0.3s ease;
-    }
+        @keyframes fall {
+            from {
+                transform: translateY(-10vh);
+                opacity: 1;
+            }
 
-    .gallery img:hover { transform: scale(1.2); }
+            to {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
 
-  </style>
+        .gallery img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.2);
+        }
+    </style>
 </head>
+
 <body>
 
-  <!-- Música -->
-  <audio id="music" src="music.mp3" loop></audio>
+    <!-- Música -->
+    <audio id="music" src="music.mp3" loop></audio>
 
-  <!-- Pantalla inicio -->
-  <div class="screen active" id="start">
-    <h1>Presiona para comenzar 💖</h1>
-  </div>
-
-  <!-- Pregunta -->
-  <div class="screen" id="question">
-    <div class="card">
-      <h1>Adriana... 💗</h1>
-      <p>¿Quieres ser mi San Valentín?</p>
-      <button class="yes" onclick="sayYes()">Sí 💞</button>
-      <button class="no" onclick="moveNo(this)">No 😢</button>
+    <!-- Pantalla inicio -->
+    <div class="screen active" id="start">
+        <h1>Mi amor,  hay algo muy importante que quiero preguntarte 💖<br>toca la pantalla...</h1>
     </div>
-  </div>
 
-  <!-- Respuesta -->
-  <div class="screen" id="yes">
-    <div class="card">
-      <img id="mainPhoto" src="foto1.jpg" alt="nosotros" />
-      <h1>Sabía que dirías que sí 💖</h1>
-      <p class="timer" id="timer"></p>
-      <div class="gallery">
-        <img src="foto1.jpg" />
-        <img src="foto2.jpg" />
-        <img src="foto3.jpg" />
-        <img src="foto4.jpg" />
-      </div>
+    <!-- Pregunta -->
+    <div class="screen" id="question">
+        <div class="card">
+            <h1>Adriana... 💗</h1>
+            <p>¿Quieres ser mi San Valentín?</p>
+            <button class="yes" onclick="sayYes()">Sí 💞</button>
+            <button class="no" onclick="moveNo(this)">No 😡</button>
+        </div>
     </div>
-  </div>
 
-  <div class="hearts" id="hearts"></div>
+    <!-- Respuesta -->
+    <div class="screen" id="yes">
+        <div class="card">
+            <img id="mainPhoto" src="foto1.jpg" alt="nosotros" />
+            <h2>Sabía que dirías que sí y no pensarias en negarlo 🤗. <br> Te amo profundamente 💖</h2>
+            <p class="timer" id="timer"></p>
+            <div class="gallery">
+                <img src="foto5.jpg" />
+                <img src="foto2.jpg" />
+                <img src="foto3.jpg" />
+                <img src="foto4.jpg" />
+            </div>
+        </div>
+    </div>
 
-  <script>
-    const start = document.getElementById('start');
-    const question = document.getElementById('question');
-    const yes = document.getElementById('yes');
-    const music = document.getElementById('music');
+    <div class="hearts" id="hearts"></div>
 
-    start.addEventListener('click', () => {
-      start.classList.remove('active');
-      question.classList.add('active');
-      music.play();
-    });
+    <script>
+        const start = document.getElementById('start');
+        const question = document.getElementById('question');
+        const yes = document.getElementById('yes');
+        const music = document.getElementById('music');
 
-    function sayYes() {
-      question.classList.remove('active');
-      yes.classList.add('active');
-      startHearts();
-      startTimer();
-    }
+        function startApp() {
+            start.classList.remove('active');
+            question.classList.add('active');
 
-    function moveNo(btn) {
-      btn.style.position = 'absolute';
-      btn.style.top = Math.random() * 80 + '%';
-      btn.style.left = Math.random() * 80 + '%';
-    }
+            // intentar reproducir música sin romper la app
+            music.play().catch(() => {
+                console.log("El navegador bloqueó la música automática");
+            });
+        }
 
-    function startHearts() {
-      const container = document.getElementById('hearts');
-      setInterval(() => {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.innerText = '💗';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = 3 + Math.random() * 2 + 's';
-        container.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-      }, 200);
-    }
+        // soporte para PC y celular
+        start.addEventListener('click', startApp);
+        start.addEventListener('touchstart', startApp);
+        document.body.addEventListener('touchstart', startApp, { once: true });
 
-    function startTimer() {
-      const startDate = new Date('2025-08-24');
-      const el = document.getElementById('timer');
 
-      setInterval(() => {
-        const now = new Date();
-        const diff = now - startDate;
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        function sayYes() {
+            question.classList.remove('active');
+            yes.classList.add('active');
+            startHearts();
+            startTimer();
+        }
 
-        el.innerText = `Llevamos ${days} días, ${hours} horas y ${mins} minutos juntos 💞`;
-      }, 1000);
-    }
-  </script>
+        function moveNo(btn) {
+            btn.style.position = 'absolute';
+            btn.style.top = Math.random() * 80 + '%';
+            btn.style.left = Math.random() * 80 + '%';
+        }
+
+        function startHearts() {
+            const container = document.getElementById('hearts');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerText = '💗💕';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 200);
+        }
+
+        function startTimer() {
+            const startDate = new Date(2025, 7, 24, 18, 30); // agregar fecha deseada
+            const el = document.getElementById('timer');
+
+            setInterval(() => {
+                const now = new Date();
+                const diff = now - startDate;
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const mins = Math.floor((diff / (1000 * 60)) % 60);
+
+                el.innerText = `Llevamos ${days} días, ${hours} horas y ${mins} minutos juntos 💞 y quiero que esto sea aun más 😁❤️`;
+            }, 1000);
+        }
+    </script>
 </body>
+
 </html>
