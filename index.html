@@ -145,11 +145,11 @@
 <body>
 
     <!-- Música -->
-    <audio id="music" src="music.mp3" loop></audio>
+    <audio id="music" src="music.mp3" loop preload="auto"></audio>
 
     <!-- Pantalla inicio -->
     <div class="screen active" id="start">
-        <h1>Mi amor,  hay algo muy importante que quiero preguntarte 💖<br>toca la pantalla...</h1>
+        <h1>Mi amor, hay algo muy importante que quiero preguntarte 💖<br>toca la pantalla...</h1>
     </div>
 
     <!-- Pregunta -->
@@ -189,11 +189,12 @@
             start.classList.remove('active');
             question.classList.add('active');
 
-            // intentar reproducir música sin romper la app
-            music.play().catch(() => {
-                console.log("El navegador bloqueó la música automática");
-            });
+            // reproducir SOLO después de interacción real
+            music.muted = false;
+            music.volume = 0.6;
+            music.play();
         }
+
 
         // soporte para PC y celular
         start.addEventListener('click', startApp);
